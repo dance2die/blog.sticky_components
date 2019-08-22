@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 
 import {
   useStickyActions,
@@ -6,10 +6,11 @@ import {
   StickySectionContext,
   StickyProvider
 } from "./Context";
+
 import {
-  useSentinels,
   useObserveTopSentinels,
-  useObserveBottomSentinels
+  useObserveBottomSentinels,
+  useSentinelOffsets
 } from "./hooks";
 
 import styles from "./index.module.scss";
@@ -59,12 +60,13 @@ function StickyBoundary({
   const Component = as;
 
   const { debug } = useStickyState();
-  const {
-    targetHeight,
-    sentinelMarginTop,
-    topSentinelRef,
-    bottomSentinelRef
-  } = useSentinels();
+
+  const topSentinelRef = useRef(null);
+  const bottomSentinelRef = useRef(null);
+
+  const { bottomSentinelHeight, topSentinelMarginTop } = useSentinelOffsets(
+    topSentinelRef
+  );
 
   useObserveTopSentinels(topSentinelRef, {
     events: {
@@ -89,7 +91,7 @@ function StickyBoundary({
       <Component className={styles.sticky__section} {...rest}>
         <div
           ref={topSentinelRef}
-          style={{ marginTop: `-${sentinelMarginTop}` }}
+          style={{ marginTop: `-${topSentinelMarginTop}` }}
           className={
             styles.sticky__sentinel_top +
             (debug ? " sticky__sentinel_debug" : "")
@@ -101,7 +103,7 @@ function StickyBoundary({
         <div
           ref={bottomSentinelRef}
           style={{
-            height: `${targetHeight}`
+            height: `${bottomSentinelHeight}`
           }}
           className={
             styles.sticky__sentinel_bottom +

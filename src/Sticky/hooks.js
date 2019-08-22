@@ -1,18 +1,11 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { useStickyState } from "./Context";
 
-/**
- * Retrieve TOP & BOTTOM sentinel refs
- * and calculated dimensions to adjust their positions
- * within sticky boundary
- */
-function useSentinels() {
-  const [targetHeight, setTargetHeight] = useState("");
-  const [sentinelMarginTop, setSentinelMarginTop] = useState("");
+function useSentinelOffsets(topSentinelRef) {
   const { stickyRefs } = useStickyState();
-  const topSentinelRef = useRef(null);
-  const bottomSentinelRef = useRef(null);
+  const [bottomSentinelHeight, setBottomSentinelHeight] = useState("");
+  const [topSentinelMarginTop, setTopSentinelMarginTop] = useState("");
 
   // Move the sentinel up by the top margin of the sticky component
   useEffect(() => {
@@ -25,16 +18,16 @@ function useSentinels() {
     const height = getProp("height");
     const marginTop = getProp("margin-top");
 
-    const targetHeight = `calc(${marginTop} +
+    const bottomSentinelHeight = `calc(${marginTop} +
         ${paddingtop} +
         ${height} +
         ${paddingBottom})`;
 
-    setTargetHeight(targetHeight);
-    setSentinelMarginTop(marginTop);
-  }, [stickyRefs]);
+    setBottomSentinelHeight(bottomSentinelHeight);
+    setTopSentinelMarginTop(marginTop);
+  }, [stickyRefs, topSentinelRef]);
 
-  return { targetHeight, sentinelMarginTop, topSentinelRef, bottomSentinelRef };
+  return { bottomSentinelHeight, topSentinelMarginTop };
 }
 
 /**
@@ -161,4 +154,8 @@ function useObserveBottomSentinels(
   ]);
 }
 
-export { useSentinels, useObserveTopSentinels, useObserveBottomSentinels };
+export {
+  useSentinelOffsets,
+  useObserveTopSentinels,
+  useObserveBottomSentinels
+};
