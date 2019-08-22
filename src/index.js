@@ -38,7 +38,7 @@ function App() {
     key => (
       <StickyBoundary
         key={key}
-        style={{ height: "105vh" }}
+        style={{ height: "55vh" }}
         onStuck={handleStuck}
         onUnstuck={handleUnstuck}
         onChange={handleChange}
