@@ -126,7 +126,7 @@ function useObserveBottomSentinels(
           bottomSentinelRect.top >= rootBounds.top &&
           bottomSentinelRect.bottom <= rootBounds.bottom &&
           intersectionRatio === 1 &&
-          targetRect.y <= 0
+          targetRect.y === 0
         ) {
           type = "stuck";
           onStuck(target);
