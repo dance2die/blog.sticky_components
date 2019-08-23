@@ -23,8 +23,8 @@ function App() {
     // target.style.boxShadow = ''
   };
   const handleChange = ({ target, type }) => {
-    // console.log(`Changed!!`, type, target)
     if (type === "stuck") {
+      // console.log(`Changed!!`, type, target);
       target.style.backgroundColor = "#4caf50";
       target.style.boxShadow =
         "0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.4)";
@@ -34,7 +34,7 @@ function App() {
     }
   };
 
-  const stickySectionElements = Array.from({ length: 3 }, (_, i) => i + 1).map(
+  const stickySectionElements = Array.from({ length: 10 }, (_, i) => i + 1).map(
     key => (
       <StickyBoundary
         key={key}

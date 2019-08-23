@@ -115,22 +115,24 @@ function useObserveBottomSentinels(
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         const target = stickyRefs.get(entry.target);
-        const targetInfo = entry.boundingClientRect;
-        const rootBoundsInfo = entry.rootBounds;
-        const ratio = entry.intersectionRatio;
+        const targetRect = target.getBoundingClientRect();
+        const bottomSentinelRect = entry.boundingClientRect;
+        const rootBounds = entry.rootBounds;
+        const intersectionRatio = entry.intersectionRatio;
 
         let type = undefined;
-        // Started sticking.
-        if (targetInfo.bottom > rootBoundsInfo.top && ratio === 1) {
+
+        if (
+          bottomSentinelRect.top >= rootBounds.top &&
+          bottomSentinelRect.bottom <= rootBounds.bottom &&
+          intersectionRatio === 1 &&
+          targetRect.y <= 0
+        ) {
           type = "stuck";
           onStuck(target);
         }
 
-        // Stopped sticking.
-        if (
-          targetInfo.top < rootBoundsInfo.top &&
-          targetInfo.bottom < rootBoundsInfo.bottom
-        ) {
+        if (bottomSentinelRect.top <= rootBounds.top) {
           type = "unstuck";
           onUnstuck(target);
         }
