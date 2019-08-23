@@ -51,16 +51,8 @@ function App() {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
           elementum ante nec viverra pharetra. Fusce nec elementum lorem. Aenean
           nunc metus, vulputate sed augue sit amet, congue vulputate arcu. Etiam
-          felis orci, hendrerit rutrum aliquet non, sodales finibus ligula.
-          Morbi posuere vitae quam congue fringilla. Maecenas arcu est, tempus
-          lacinia. Pellentesque at lectus varius, rhoncus mi et, commodo sapien.
-          Proin euismod pharetra ligula ac tempus. Nam a nibh in leo facilisis
-          lacinia, sodales sapien at, finibus eros. lacinia. Pellentesque at
-          lectus varius, rhoncus mi et, commodo sapien. Proin euismod pharetra
-          ligula ac tempus. Nam a nibh in leo facilisis semper sed nec nulla.
-          Nam sed tellus sed est sodales convallis. Praesent felis sapien,
-          auctor nec venenatis eu, vehicula vitae nibh. Vestibulum vel imperdiet
-          massa. Nunc ac neque lacinia, sodales sapien at, finibus eros.
+          felisu, vehicula vitae nibh. Vestibulum vel imperdiet massa. Nunc ac
+          neque lacinia, sodales sapien at, finibus eros.
         </article>
       </StickyBoundary>
     )
