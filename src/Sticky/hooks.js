@@ -7,7 +7,7 @@ function useSentinelOffsets(topSentinelRef) {
   const [bottomSentinelHeight, setBottomSentinelHeight] = useState("");
   const [topSentinelMarginTop, setTopSentinelMarginTop] = useState("");
 
-  // Move the sentinel up by the top margin of the sticky component
+  // Переместите датчик вверх по верхнему краю липкого компонента
   useEffect(() => {
     const stickyNode = stickyRefs.get(topSentinelRef.current);
 
@@ -31,17 +31,17 @@ function useSentinelOffsets(topSentinelRef) {
 }
 
 /**
- * Observe the TOP sentinel and dispatch sticky events
- * @param {React.MutableRefObject<T>} topSentinelRef Ref to underlying TOP sentinel
+ * Соблюдайте ТОП датчик и отправляйте липкие события
+ * @param {React.MutableRefObject<T>} topSentinelRef Ссылка на базовый верхний датчик
  */
 // https://developers.google.com/web/updates/2017/09/sticky-headers
 function useObserveTopSentinels(
   topSentinelRef,
   {
     /**
-     * @param {Function} onStuck dispatched when TOP sentinel is unstuck
-     * @param {Function} onUnstuck dispatched when TOP sentinel is stuck
-     * @param {Function} onChange dispatched when TOP sentinel is either stuck or unstuck
+     * @param {Function} onStuck отправляется, когда верхний датчик отлип
+     * @param {Function} onUnstuck отправляется, когда верхний датчик влип
+     * @param {Function} onChange отправляется, когда верхний датчик влип или отлип
      */
     events: { onStuck, onUnstuck, onChange }
   }
@@ -62,13 +62,13 @@ function useObserveTopSentinels(
         const rootBoundsInfo = entry.rootBounds;
 
         let type = undefined;
-        // Started sticking.
+        // Начало прилипания.
         if (targetInfo.bottom < rootBoundsInfo.top) {
           type = "stuck";
           onStuck(target);
         }
 
-        // Stopped sticking.
+        // Перестал прилипать (отлип).
         if (
           targetInfo.bottom >= rootBoundsInfo.top &&
           targetInfo.bottom < rootBoundsInfo.bottom
@@ -90,16 +90,16 @@ function useObserveTopSentinels(
 }
 
 /**
- * Observe the BOTTOM sentinel and dispatch sticky events
- * @param {React.MutableRefObject<T>} topSentinelRef Ref to underlying BOTTOM sentinel
+ * Соблюдайте НИЖний датчик и отправляйте липкие события
+ * @param {React.MutableRefObject<T>} topSentinelRef Ссылка на нижний датчик BOTTOM
  */
 function useObserveBottomSentinels(
   bottomSentinelRef,
   {
     /**
-     * @param {Function} onStuck dispatched when TOP sentinel is unstuck
-     * @param {Function} onUnstuck dispatched when TOP sentinel is stuck
-     * @param {Function} onChange dispatched when TOP sentinel is either stuck or unstuck
+     * @param {Function} onStuck Отправляется при отключении датчика TOP
+     * @param {Function} onUnstuck Отправляется, когда датчик TOP застрял
+     * @param {Function} onChange Отправляется, когда датчик TOP либо застрял, либо снят
      */ events: { onStuck, onUnstuck, onChange }
   }
 ) {
