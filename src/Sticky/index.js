@@ -17,7 +17,7 @@ import styles from "./index.module.scss";
 
 // https://stackoverflow.com/questions/40032592/typescript-workaround-for-rest-props-in-react
 /**
- * Make the element sticky
+ * Делаем элемент липким
  */
 function Sticky({ children, as = "div", className = "", ...rest }) {
   const { topSentinelRef, bottomSentinelRef } = useContext(
@@ -25,8 +25,8 @@ function Sticky({ children, as = "div", className = "", ...rest }) {
   );
   const dispatch = useStickyActions();
 
-  // So that we can retrieve correct child target element
-  // from either a top sentinel or a bottom sentinel
+  // Так мы можем получить правильный дочерний целевой элемент
+  // из верхнего или нижнего датчика.
   const addStickyRef = stickyRef => {
     dispatch.addStickyRef(topSentinelRef, bottomSentinelRef, stickyRef);
   };
@@ -47,7 +47,7 @@ function Sticky({ children, as = "div", className = "", ...rest }) {
 const noop = () => {};
 
 /**
- * A section, in which <Sticky /> element element is observed
+ * Раздел, в котором наблюдается элемент <Sticky/>
  */
 function StickyBoundary({
   as = "section",
@@ -97,7 +97,7 @@ function StickyBoundary({
             (debug ? " sticky__sentinel_debug" : "")
           }
         >
-          sentinel top
+          от шапки
         </div>
         {children}
         <div
@@ -110,7 +110,7 @@ function StickyBoundary({
             (debug ? " sticky__sentinel_debug" : "")
           }
         >
-          sentinel bottom
+          до тапки
         </div>
       </Component>
     </StickySectionContext.Provider>
@@ -118,7 +118,7 @@ function StickyBoundary({
 }
 
 /**
- * Ref to the sticky viewport
+ * Ссылка на липкое окно просмотра
  */
 function StickyRoot({ children, as: Component = "div", ...rest }) {
   const dispatch = useStickyActions();
@@ -130,8 +130,8 @@ function StickyRoot({ children, as: Component = "div", ...rest }) {
   return (
     <Component ref={addContainerRef} {...rest}>
       <section style={{ zIndex: 1000, position: "absolute" }}>
-        <button style={{ height: "5rem" }} onClick={dispatch.toggleDebug}>
-          Toggle Debug
+        <button style={{ height: "4rem" }} onClick={dispatch.toggleDebug}>
+          Отладка i/o
         </button>
       </section>
       {children}
@@ -140,7 +140,7 @@ function StickyRoot({ children, as: Component = "div", ...rest }) {
 }
 
 /**
- * Provides sticky context to the sticky component tree.
+ * Предоставляет липкий контекст для дерева липких компонентов.
  */
 function StickyViewport({ children, as = "div", ...rest }) {
   return (

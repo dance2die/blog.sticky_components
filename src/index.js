@@ -44,15 +44,15 @@ function App() {
         onChange={handleChange}
       >
         <Sticky id={key} as="h1">
-          Sticky Header {key}
+          Липкая шапка {key}
         </Sticky>
-        <h3>{key} -- Some content under the sticky header</h3>
+        <h3>{key} -- Некий контент под липкой шапкой</h3>
         <article>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-          elementum ante nec viverra pharetra. Fusce nec elementum lorem. Aenean
-          nunc metus, vulputate sed augue sit amet, congue vulputate arcu. Etiam
-          felisu, vehicula vitae nibh. Vestibulum vel imperdiet massa. Nunc ac
-          neque lacinia, sodales sapien at, finibus eros.
+          Не следует, однако забывать, что дальнейшее развитие различных форм
+          деятельности способствует подготовке и реализации форм развития.
+          Равным образом консультация с широким активом требуют определения и
+          уточнения модели развития. Таким образом реализация намеченных
+          плановых заданий позволяет оценить значение новых предложений.
         </article>
       </StickyBoundary>
     )

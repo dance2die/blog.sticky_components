@@ -6,7 +6,7 @@ const initialState = {
   debug: false
 };
 
-// No operation
+// Нет операции
 const noop = () => {};
 
 const initialDispatch = {
@@ -27,7 +27,7 @@ function reducer(state, action) {
   const { type, payload } = action;
   switch (type) {
     case ActionType.setContainerRef:
-      // Reassigning a new ref, will infinitely re-load!
+      // Переназначение новой ссылки будет бесконечно перезагружаться!
       return Object.assign(state, {
         containerRef: { current: payload.containerRef }
       });
@@ -79,7 +79,7 @@ function StickyProvider({ children }) {
 function useStickyState() {
   const context = useContext(StickyStateContext);
   if (context === undefined)
-    throw Error('"useStickyState should be used under "StickyStateContext');
+    throw Error('"useStickyState следует использовать при "StickyStateContext');
   return context;
 }
 
@@ -87,7 +87,7 @@ function useStickyActions() {
   const context = useContext(StickyDispatchContext);
   if (context === undefined)
     throw Error(
-      '"useStickyActions should be used under "StickyDispatchContext'
+      '"useStickyActions следует использовать при "StickyDispatchContext'
     );
   return context;
 }
